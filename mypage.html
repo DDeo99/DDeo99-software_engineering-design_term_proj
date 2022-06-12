@@ -1,0 +1,33 @@
+<html>
+    <head></head>
+    <body>
+        <h5>
+            <a href="{{url_for('main')}}">메인으로</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>가격</th>
+                    <th>키워드</th>
+                    <th>판매상태</th>
+                    <th>판매자</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{product.p_title}}</td>
+                    <td>{{product.p_detail}}</td>
+                    <td>{{product.p_keyword}}</td>
+                    <td>{{product.p_state}}</td>
+                    <td>{{product.p_seller}}</td>
+                    <td><a href="{{url_for('edit',product_id=product.id)}}">edit</a></td>
+                    <td><a href="{{url_for('delete',product_id=product.id)}}">delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </h5>
+    </body>
+</html>

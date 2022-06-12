@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <form action = "{{url_for('upload')}}" method="POST">
+            <h2>상품 업로드</h2>
+            제목<br>
+            <input type="text" name="p_title" ><br>
+            가격(원)<br>
+            <input type="text" name="p_detail"><br>
+            키워드(의류/신발/액세서리/스포츠/전자기기/기타)<br>
+            <input type="text" name="p_keyword"><br>
+            판매여부(판매중/판매완료)<br>
+            <input type="text" name="p_state"><br>
+            판매자정보(전화번호, 이메일 등)<br>
+            <input type="text" name="p_seller"><br>
+            <input type ="submit"/>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,92 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> DH마켓</title>
+
+    <link rel="stylesheet" href="../static/css/mainpage.css">
+
+</head>
+
+<body>
+    
+    <header>
+        <h1>
+            <a href ="{{url_for('main')}}">
+                <img src ="../static/images/mainpage_top_img.png" alt="DH market" width="150" height="50">
+            </a>
+        </h1>
+    </header>
+    <nav>
+        <ul>
+            <a href="./" target="_blank">Home</a></li>&nbsp;&nbsp;&nbsp;
+            <a href="{{url_for('mypage')}}">My page</a></li>&nbsp;&nbsp;&nbsp;
+            <a href="{{url_for('upload')}}">upload</a></li>&nbsp;&nbsp;&nbsp;
+            {% if session['userid'] %}
+            <a href="./logout" target="_blank">Logout</a></li>&nbsp;&nbsp;&nbsp;
+            {% else %}
+            <a href="./login" target="_blank">Login</a></li>&nbsp;&nbsp;&nbsp;
+            <a href="./register" target="_blank">Join</a></li>&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        </ul>
+    </nav>
+
+    <aside id="left">
+        <h4>카테고리</h4>
+        <ul>
+            <li><a href="{{url_for('cloth')}}" target="iframe1">의류</a></li>
+            <li><a href="{{url_for('shoe')}}" target="iframe1">신발</a></li>
+            <li><a href="{{url_for('accessory')}}" target="iframe1">액세서리</a></li>
+            <li><a href="{{url_for('sport')}}" target="iframe1">스포츠</a></li>
+            <li><a href="{{url_for('electronic')}}" target="iframe1">전자기기</a></li>
+            <li><a href="{{url_for('etc')}}" target="iframe1">기타</a></li>
+        </ul>
+    </aside>
+
+    <section id="main">
+        <table>
+            <style>th,td{padding:10px;}</style>
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>가격</th>
+                    <th>키워드</th>
+                    <th>판매상태</th>
+                    <th>판매자</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{product.p_title}}</td>
+                    <td>{{product.p_detail}}</td>
+                    <td>{{product.p_keyword}}</td>
+                    <td>{{product.p_state}}</td>
+                    <td>{{product.p_seller}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <img src="../static/images/mainpage_home_img.png" alt="" width="1000" height="500">
+        <a href="mainpage.html"></a>
+    </section>
+    
+    <!-- login-->
+    </article>
+    <aside id="right">
+        <div id="login">
+            <h3>Login / Join</h3><br>
+            <form action="./login.php" method="POST">
+                {% if session['userid'] %}
+                    <li><button type="button" onclick="location.href='/logout' "><h4>로그아웃</h4></button></li>
+                {% else %}
+                    <li><button type="button" onclick="location.href='/login' "><h4>로그인</h4></button></li><br>
+                    <li><button type="button" onclick="location.href='/register' "><h4>회원가입</h4></button></li>
+                {% endif %}
+            </form> 
+        </div>
+    </aside>
+  <!--  <footer></footer> -->
+</body>
+</html>
